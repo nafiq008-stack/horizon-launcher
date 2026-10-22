@@ -9,19 +9,18 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
-
       - name: Build APK from HorizonLauncher.zip
         run: |
+          echo "Android SDK: $ANDROID_HOME"
           unzip -q -o HorizonLauncher.zip -d src
           cd src/HorizonLauncher
           chmod +x gradlew
